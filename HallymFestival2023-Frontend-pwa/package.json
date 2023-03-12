@@ -1,0 +1,23 @@
+{
+  "name": "hallymfestival2023-frontend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "@vue/cli-plugin-pwa": "^5.0.8",
+    "axios": "^1.3.4",
+    "register-service-worker": "^1.7.2",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "prettier": "^2.8.4",
+    "vite": "^4.1.4"
+  }
+}
