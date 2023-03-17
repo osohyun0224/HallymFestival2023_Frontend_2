@@ -8,7 +8,7 @@
   <div class="dimmer" :class="{ hidden: !showMenu }" @click="() => (showMenu = false)"></div>
   <div class="wrapper">
     <nav :class="{ hidden: !showMenu }">
-      <template v-for="{ url, name, bottom = false } in navList">
+      <template v-for="{ url, name, bottom = false } in navList" >
         <RouterLink
           :to="'/' + url"
           v-text="name"
@@ -45,8 +45,8 @@ export default {
         { name: '부스 배치도', url: 'boothmap' },
         { name: '타임 테이블', url: 'timetable' },
         { name: '프로그램', url: 'program' },
+        { name: '방명록', url: 'comment' },
         { name: 'About Us', url: 'aboutus' },
-        { name: 'API 데모 테스트', url: 'feature-test' },
         { name: '로그인', url: 'login', bottom: true }
       ]
     };
@@ -135,6 +135,7 @@ nav > * {
   max-width: 768px;
   min-height: calc(100vh - 72px);
   margin: auto;
+  padding: 0 28px;
 }
 
 @media screen and (max-width: 768px) {

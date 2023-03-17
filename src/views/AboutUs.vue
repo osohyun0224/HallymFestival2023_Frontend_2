@@ -1,7 +1,7 @@
 <template>
   <main>
     <h1>About Us</h1>
-    <div class="card" style="width: 15rem; background-color: beige;">
+    <div class="card" style="width: 15rem; background-color: lightblue;">
       <img class="card-img-top" src="../assets/osohyun.png" >
       <div class="card-body">
       <h5 class="card-title" >빅데이터학과 20 오소현</h5>
