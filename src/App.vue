@@ -54,6 +54,7 @@ export default {
         { name: '타임 테이블', url: 'timetable' },
         { name: '프로그램', url: 'program' },
         { name: '방명록', url: 'comment' },
+        { name: '오시는 길', url: 'togo' },
         { name: 'About Us', url: 'aboutus' },
         { name: '로그인', url: 'login', bottom: true }
       ]
