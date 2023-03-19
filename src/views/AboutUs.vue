@@ -97,7 +97,7 @@
       <!-- 기획/디자인 -->
       <TeamText className="team" text-align: center><h3>PM / DESGIN TEAM</h3></TeamText>
       <hr style="border: solid 1px black;">
-      
+
       <div class="floatt">
         <div class="dcard">
           <img src="@/assets/osohyun.png" alt="" />

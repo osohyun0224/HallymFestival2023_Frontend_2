@@ -8,7 +8,7 @@
   <div class="dimmer" :class="{ hidden: !showMenu }" @click="() => (showMenu = false)"></div>
   <div class="wrapper">
     <nav :class="{ hidden: !showMenu }">
-      <template v-for="{ url, name, bottom = false } in navList" >
+      <template v-for="{ url, name, bottom = false } in navList">
         <RouterLink
           :to="'/' + url"
           v-text="name"
@@ -24,16 +24,24 @@
       </Transition>
     </RouterView>
   </div>
+  <v-fab-transition>
+    <v-btn bottom right fixed fab dark small v-show="btnShow" @click="$vuetify.goTo('#header')">
+      <v-icon>fas fa-angle-double-up</v-icon>
+    </v-btn>
+  </v-fab-transition>
+  <Footer></Footer>
 </template>
 
 <script>
 import { RouterLink, RouterView } from 'vue-router';
 import menuButtonImage from '@/assets/hamburger.png';
+import Footer from '@/components/Footer.vue';
 
 export default {
   components: {
     RouterLink,
-    RouterView
+    RouterView,
+    Footer
   },
   data() {
     return {
@@ -50,6 +58,18 @@ export default {
         { name: '로그인', url: 'login', bottom: true }
       ]
     };
+  },
+  methods:{
+    handleScroll(){
+      this.btnShow =  window.scrollY>400;
+    }
+  },
+  beforeMount(){
+    window.addEventListener("scroll",this.handleScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll",this.handleScroll);
+    
   }
 };
 </script>
