@@ -5,6 +5,7 @@
     </button>
     <p>2023 한림대학교 비봉축전</p>
   </header>
+  <main>
   <div class="dimmer" :class="{ hidden: !showMenu }" @click="() => (showMenu = false)"></div>
   <div class="wrapper">
     <nav :class="{ hidden: !showMenu }">
@@ -24,11 +25,28 @@
       </Transition>
     </RouterView>
   </div>
-  <v-fab-transition>
-    <v-btn bottom right fixed fab dark small v-show="btnShow" @click="$vuetify.goTo('#header')">
-      <v-icon>fas fa-angle-double-up</v-icon>
-    </v-btn>
-  </v-fab-transition>
+  <div class="v-main__wrap">
+    <div>
+      <v-app id="app">
+        <v-app-bar> </v-app-bar>
+        <v-main>
+          <v-container id="scroll-target" class="overflow-y-auto"> </v-container>
+          <v-btn
+            v-show="scroll > 0"
+            fab
+            fixed
+            dark
+            bottom
+            v-scroll:#scroll-target="onScroll"
+            @click="goTop"
+          >
+            <v-icon>mdi-menu-up</v-icon>
+          </v-btn>
+        </v-main>
+      </v-app>
+    </div>
+  </div>
+</main>
   <Footer></Footer>
 </template>
 
@@ -47,6 +65,8 @@ export default {
     return {
       showMenu: false,
       menuButtonImage,
+      scroll: 0,
+      scrollTarget: null,
       navList: [
         { name: 'HOME', url: '' },
         { name: '공지사항', url: 'announcement' },
@@ -60,19 +80,22 @@ export default {
       ]
     };
   },
-  methods:{
-    handleScroll(){
-      this.btnShow =  window.scrollY>400;
+  mounted() {
+	// goTop을 위해 mount 시 element 설정
+	this.scrollTarget = document.getElementById('scroll-target');
+  },
+  methods: {
+    onScroll(e) {
+    	// 스크롤 움직일 때 마다 호출됨
+    	this.scroll = e.target.scrollTop;
+    },
+	goTop() {
+		if (this.scrollTarget) {
+			this.scrollTarget.scrollTop = 0;
+		}
     }
-  },
-  beforeMount(){
-    window.addEventListener("scroll",this.handleScroll);
-  },
-  beforeDestroy() {
-    window.removeEventListener("scroll",this.handleScroll);
-    
-  }
-};
+}
+}
 </script>
 
 <style scoped>
@@ -101,6 +124,12 @@ header > p {
   margin: 0;
   font-size: 18pt;
   font-weight: 600;
+}
+.v-main{
+  min-height: 100%;
+}
+.scroll-target{
+  max-height: 100%;
 }
 .wrapper {
   padding-top: 72px;
